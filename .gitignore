@@ -200,3 +200,8 @@ APM/app/common/services/common.services.js
 *.bak
 APM/app/app.js 
 APM/app/products/productListCtrl.js
+APM/app/products/product.js
+APM/app/app.js
+APM/app/products/productListCtrl.js
+APM/app/app.js
+APM/app/products/productListCtrl.js
