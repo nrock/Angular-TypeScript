@@ -197,3 +197,6 @@ FakesAssemblies/
 APM/app/common/services/productResourceMock.js
 APM/app/common/services/dataAccessService.js
 APM/app/common/services/common.services.js
+*.bak
+APM/app/app.js 
+APM/app/products/productListCtrl.js

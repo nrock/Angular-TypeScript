@@ -1,7 +1,9 @@
+module app.productList {
 interface IProductListModel {
 	title: string;
 	showImage: boolean;
 	products: any[];
+	toggleImage(): void;
 }
 
 class ProductListCtrl implements IProductListModel {
@@ -41,11 +43,12 @@ class ProductListCtrl implements IProductListModel {
 				"imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
 			}
 		];
+	} 
+	toggleImage(): void{
+			this.showImage = !this.showImage;
+	} 
+}  
 
+angular.module("productManagement").controller("ProductListCtrl", ProductListCtrl);
 
-	}
 }
-
-angular
-	.module("productMnagament")
-	.controller("ProductsListCtrl", ProductListCtrl);
