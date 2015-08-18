@@ -4,8 +4,7 @@ module app.common{
 	}
 	
 	interface IProductResource 
-		extends ng.resource.IResource<app.domain.IProduct>
-	{ 
+		extends ng.resource.IResource<app.domain.IProduct> { 
 	}	
 	
 	export class DataAccessService
@@ -18,9 +17,9 @@ module app.common{
 		getProductResource(): ng.resource.IResourceClass<IProductResource>{
 			return this.$resource("/api/products/:productId");
 		}
-		
 	}
-	angular.module("common.services").service("dataAccessService", DataAccessService);
+	angular
+.module("common.services")
+.service("dataAccessService", 
+DataAccessService);
 }
- 
-

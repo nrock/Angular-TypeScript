@@ -12,12 +12,12 @@ class ProductListCtrl implements IProductListModel {
 	products: app.domain.IProduct[];
 	
 	static $inject=["dataAccessService"];
-	constructor(private dataAccesService: app.common.DataAccessService){
+		constructor(private dataAccessService: app.common.DataAccessService) {
 		this.title = "Product List";
 		this.showImage = false; 
+			this.products = [];
 		
-		
-		var productResource =   dataAccesService.getProductResource();
+			var productResource = dataAccessService.getProductResource();
 		productResource.query(( data: app.domain.IProduct[]) => {
 			this.products = data;
 		});
@@ -26,7 +26,8 @@ class ProductListCtrl implements IProductListModel {
 			this.showImage = !this.showImage;
 	} 
 }  
-
-angular.module("productManagement").controller("ProductListCtrl", ProductListCtrl);
-
+angular
+		.module("productManagement")
+		.controller("ProductListCtrl",
+			ProductListCtrl);
 }
