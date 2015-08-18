@@ -7,7 +7,7 @@ var app;
     routeConfig.$inject = ["$routeProvider"];
     function routeConfig($routeProvider) {
         $routeProvider
-            .when("/productlist", {
+            .when("/productList", {
             templateUrl: "/app/products/productListView.html",
             controller: "ProductListCtrl as vm"
         })

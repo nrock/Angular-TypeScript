@@ -237,7 +237,7 @@ declare module angular {
         forEach(obj: any, iterator: (value: any, key: any) => any, context?: any): any;
 
         fromJson(json: string): any;
-        identity<T>(arg?: T): T;
+        identity(arg?: any): any;
         injector(modules?: any[], strictDi?: boolean): auto.IInjectorService;
         isArray(value: any): boolean;
         isDate(value: any): boolean;
@@ -453,7 +453,7 @@ declare module angular {
          * following compilation. The observer is then invoked whenever the
          * interpolated value changes.
          */
-        $observe<T>(name: string, fn: (value?: T) => any): Function;
+        $observe(name: string, fn: (value?: any) => any): Function;
 
         /**
          * A map of DOM element attribute names to the normalized name. This is needed
@@ -725,7 +725,7 @@ declare module angular {
     // see http://docs.angularjs.org/api/ng.$timeout
     ///////////////////////////////////////////////////////////////////////////
     interface ITimeoutService {
-        <T>(func: (...args: any[]) => T, delay?: number, invokeApply?: boolean): IPromise<T>;
+        (func: Function, delay?: number, invokeApply?: boolean): IPromise<any>;
         cancel(promise: IPromise<any>): boolean;
     }
 
@@ -996,7 +996,8 @@ declare module angular {
      * See http://docs.angularjs.org/api/ng/service/$q
      */
     interface IQService {
-        new <T>(resolver: (resolve: IQResolveReject<T>) => any): IPromise<T>;
+        new (resolver: (resolve: IQResolveReject<any>) => any): IPromise<any>;
+        new (resolver: (resolve: IQResolveReject<any>, reject: IQResolveReject<any>) => any): IPromise<any>;
         new <T>(resolver: (resolve: IQResolveReject<T>, reject: IQResolveReject<any>) => any): IPromise<T>;
 
         /**
@@ -1006,7 +1007,7 @@ declare module angular {
          *
          * @param promises An array of promises.
          */
-        all<T>(promises: IPromise<any>[]): IPromise<T[]>;
+        all(promises: IPromise<any>[]): IPromise<any[]>;
         /**
          * Combines multiple promises into a single promise that is resolved when all of the input promises are resolved.
          *
@@ -1015,7 +1016,6 @@ declare module angular {
          * @param promises A hash of promises.
          */
         all(promises: { [id: string]: IPromise<any>; }): IPromise<{ [id: string]: any; }>;
-        all<T extends {}>(promises: { [id: string]: IPromise<any>; }): IPromise<T>;
         /**
          * Creates a Deferred object which represents a task which will finish in the future.
          */
@@ -1156,7 +1156,7 @@ declare module angular {
          *
          * @param key the key of the data to be retrieved
          */
-        get<T>(key: string): T;
+        get(key: string): any;
 
         /**
          * Removes an entry from the Cache object.
@@ -1227,8 +1227,8 @@ declare module angular {
     ///////////////////////////////////////////////////////////////////////////
     interface IControllerService {
         // Although the documentation doesn't state this, locals are optional
-        (controllerConstructor: Function, locals?: any, bindToController?: any): any;
-        (controllerName: string, locals?: any, bindToController?: any): any;
+        (controllerConstructor: Function, locals?: any): any;
+        (controllerName: string, locals?: any): any;
     }
 
     interface IControllerProvider extends IServiceProvider {
@@ -1540,8 +1540,6 @@ declare module angular {
     interface ISCEDelegateProvider extends IServiceProvider {
         resourceUrlBlacklist(blacklist: any[]): void;
         resourceUrlWhitelist(whitelist: any[]): void;
-        resourceUrlBlacklist(): any[];
-        resourceUrlWhitelist(): any[];
     }
 
     /**
@@ -1587,7 +1585,7 @@ declare module angular {
             scope: IScope,
             instanceElement: IAugmentedJQuery,
             instanceAttributes: IAttributes,
-            controller: {},
+            controller: any,
             transclude: ITranscludeFunction
         ): void;
     }
@@ -1682,9 +1680,9 @@ declare module angular {
         interface IInjectorService {
             annotate(fn: Function): string[];
             annotate(inlineAnnotatedFunction: any[]): string[];
-            get<T>(name: string): T;
+            get(name: string): any;
             has(name: string): boolean;
-            instantiate<T>(typeConstructor: Function, locals?: any): T;
+            instantiate(typeConstructor: Function, locals?: any): any;
             invoke(inlineAnnotatedFunction: any[]): any;
             invoke(func: Function, context?: any, locals?: any): any;
         }
