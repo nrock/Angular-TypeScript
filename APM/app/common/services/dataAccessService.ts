@@ -6,6 +6,9 @@ module app.common {
 	interface IProductResource
 		extends ng.resource.IResource<app.domain.IProduct> {
 	}
+	interface IEventResource
+		extends ng.resource.IResource<app.domain.IEvent> {
+	}
 
 	export class DataAccessService
 		implements IDataAccessService {
@@ -16,6 +19,9 @@ module app.common {
 
 		getProductResource(): ng.resource.IResourceClass<IProductResource> {
 			return this.$resource("/api/products/:productId");
+		}
+		getEventResource(): ng.resource.IResourceClass<IEventResource> {
+			return this.$resource("/api/events/:eventId");
 		}
 	}
 	angular
